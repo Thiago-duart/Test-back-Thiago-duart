@@ -17,15 +17,15 @@ export class UserService {
     return this.userModel.find();
   }
   async findOne(id: string): Promise<User> {
-    return this.userModel.findOne({ _id: id });
+    return this.userModel.findOne({ userId: id });
   }
   async editing(editUserDto: EditUserDto, id: string) {
     const updated = await this.userModel
-      .findByIdAndUpdate({ _id: id }, editUserDto)
+      .findOneAndUpdate({ userId: id }, editUserDto)
       .exec();
     return updated;
   }
   async delete(id: string) {
-    return await this.userModel.findByIdAndRemove({ _id: id }).exec();
+    return await this.userModel.findOneAndDelete({ userId: id }).exec();
   }
 }

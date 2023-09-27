@@ -64,7 +64,7 @@ export class UserController {
 
     return res.status(200).json({
       message: 'success',
-      data: { users: users },
+      data: users,
     });
   }
   @UseGuards(AuthGuard)

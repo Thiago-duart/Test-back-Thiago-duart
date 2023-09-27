@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose';
 
 export class EditUserDto {
-  _id?: ObjectId;
+  userId?: ObjectId;
   name?: string;
   age?: number;
   gitHubUser?: String;

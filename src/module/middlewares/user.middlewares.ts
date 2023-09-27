@@ -9,7 +9,7 @@ export class checksUserExiteByID implements NestMiddleware {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
   async use(req: Request, res: Response, next: NextFunction) {
     const userId = req.params.id;
-    const user = await this.userModel.findById({ _id: userId });
+    const user = await this.userModel.findOne({ userId: userId });
     if (!user) {
       return res.status(400).json({ message: 'user does not exist' });
     }
@@ -20,8 +20,8 @@ export class checksUserExiteByID implements NestMiddleware {
 export class CheckUserHasAlreadybeenCreated implements NestMiddleware {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
   async use(req: Request, res: Response, next: NextFunction) {
-    const userId = req.body._id;
-    const user = await this.userModel.findById({ _id: userId });
+    const userId = req.body.userId;
+    const user = await this.userModel.findOne({ userId: userId });
     if (user) {
       return res.status(400).json({ message: 'user already created' });
     }

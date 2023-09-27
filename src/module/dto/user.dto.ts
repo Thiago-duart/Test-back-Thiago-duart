@@ -1,5 +1,5 @@
 export class CreateUserDto {
-  _id: Record<string, any>;
+  userId: Record<string, any>;
   name: String;
   age: Number;
   githubUser: String;

@@ -35,6 +35,7 @@ export const CreateUserSchema = z.object({
   name: z.string().nonempty(),
   age: z.number().nonnegative(),
   githubUser: z.string().nonempty(),
+  userId: z.string().nonempty(),
 });
 
 export type CreateUserDto = z.infer<typeof CreateUserSchema>;

@@ -61,7 +61,7 @@ export class UserHelpers {
     githubData: UserDataGithub,
   ): CreateUserDto {
     const newUser: CreateUserDto = {
-      _id: createUserDto._id,
+      userId: createUserDto.userId,
       name: createUserDto.name,
       age: createUserDto.age,
       githubUser: createUserDto.githubUser,
