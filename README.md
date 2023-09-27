@@ -1,73 +1,260 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+🤦‍♂️🤦‍♂️
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+ <h1>testing-api</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[Rotas sem autenticação](#one)
 
-## Description
+[Rotas com autenticação](#two)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[executar o projeto](#zero)
 
-## Installation
+A API tem um total de 7 endpoints, sendo em volta principalmente da rota (user) - podendo cadastrar Registro de usuarios.
+
+<sub>Observação: Este projeto foi criado apenas com o intuito de estudo. Portanto, informações sensíveis, como chaves de acesso ou links para o cluster, estão expostas no código e deveriam ser armazenadas em variáveis de ambiente ou configuradas em um serviço de configuração adequado.<sub/>
+
+**repos**
+
+url do Front-end: https://github.com/Thiago-duart/test-Front-Thiago-duart
+
+url do back-end:https://github.com/Thiago-duart/Test-back-Thiago-duart
+
+---
+
+<br/>
+<br/>
+<br/>
+<a name="executar o projeto" id="zero"></a>
+✔📌**executar o projeto**
+
+<br/>
+Após Clonar os Projeto =>
+<h4>O projeto utiliza um banco de dados MongoDB e, nesse caso, é necessário conectar o cluster do MongoDB ao projeto. Para fazer isso, siga as etapas abaixo:<h4/>
+
+- Acesse o MongoDB Atlas: Faça login na sua conta do MongoDB Atlas ou crie uma nova conta se ainda não tiver uma.
+
+- Crie um Cluster: Se você ainda não tiver um cluster, crie um novo na seção "Clusters". Siga as instruções fornecidas para configurar o cluster de acordo com suas necessidades.
+
+- Obtenha a String de Conexão: Após criar o cluster, vá para a seção "Clusters" e clique no botão "Connect". Em seguida, selecione "Connect your application" e copie a string de conexão fornecida. Essa string de conexão será usada para conectar o seu projeto ao cluster do MongoDB.
+
+- Cole a String de Conexão no Projeto: No código do seu projeto, cole a string de conexão do MongoDB onde é necessário.
+
+  **"./app.module.ts"**
+  ![Alt text](https://cdn.discordapp.com/attachments/649373577841344553/1156682963258458313/image.png?ex%253D6515dc74%2526is%253D65148af4%2526hm%253Dc20913b25fc6a37c770947ddec6f4bbf782d134c18dfed5afbae319a5904c957%2526)
+  <br/>
+  <br/>
+
+  Clonar os repositórios para executar o projeto completo e, em seguida, utilize o comando a seguir:
+
+## no Front
 
 ```bash
-$ pnpm install
+pnpm install
+pnpm run start
 ```
 
-## Running the app
+<br/>
+
+## no Back
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
+pnpm run start:dev
 ```
 
-## Test
+---
 
-```bash
-# unit tests
-$ pnpm run test
+<br/>
+<br/>
+<br/>
+<a name="Rotas sem autenticação" id="one"></a>
+ <h1>Rotas que não precisam de autenticação </h1>
 
-# e2e tests
-$ pnpm run test:e2e
+### 📌Nessa aplicação o usuário pode fazer login na seguinte rota
 
-# test coverage
-$ pnpm run test:cov
+**POST http://localhost:3000/auth/login**
+
+<tr>
+
+(**BODY**)
+
+```ruby
+	"content":{
+	"email":"admin@admin.com",
+	"password":"@Admin123"
+}
 ```
 
-## Support
+### 🔑 ROTA DE LOGIN RETORNA UM TOKEN DE ACESSO
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+### 📌Nessa aplicação o usuário pode fazer o cadastro na seguinte rota
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**POST http://localhost:3000/auth/register**
 
-## License
+(**BODY**)
 
-Nest is [MIT licensed](LICENSE).
+```ruby
+{
+	"name": "admin",
+	"email":"admin@admin.com",
+	"password":"@Admin123"
+}
+```
+
+---
+
+<br/>
+<br/>
+<a name="Rotas com autenticação" id="two"></a>
+ <h1>Rotas que precisa de AUTENTIÇÃO </h1>
+<br/>
+<br/>
+
+### 📌Criar um Registro de Usuario
+
+**POST http://localhost:3000/user**
+
+(**BODY**)
+
+```ruby
+{
+	"data":{
+		   "userId": "98232",
+			"name": "teste100",
+			"age":" 21",
+			"githubUser": "Thiago-duart",
+			"address": {
+				"cep": "01001000",
+				"state": "SP",
+				"city": "São Paulo",
+				"neighborhood": "Sé",
+				"street": "adsfasdasdf",
+				"number": "123123",
+				"complement": "em frente"
+			}
+		}
+}
+```
+
+<br/>
+
+### 📌Buscar todos os Registros de Usuarios
+
+**GET http://localhost:3000/user**
+
+(**Formato da resposta**)
+
+```ruby
+{
+	"data":[{
+		"userId": "98232",
+			"name": "teste100",
+			"age":" 21",
+			"githubUser": "Thiago-duart",
+			"address": {
+				"cep": "01001-000",
+				"state": "SP",
+				"city": "São Paulo",
+				"neighborhood": "Sé",
+				"street": "adsfasdasdf",
+				"number": "123123",
+				"complement": "em frente",
+				"logradouro": "Praça da Sé",
+				"ibge": "3550308",
+				"gia": "1004",
+				"ddd": "11",
+				"siafi": "7107"}
+            "githubData": {
+				"login": "Thiago-duart",
+				"id": 129175937,
+				"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
+				"url": "https://api.github.com/users/Thiago-duart",
+             "repos":[{
+					    "id": 639436241,
+						"owner": "Thiago-duart",
+						"full_name": "Thiago-duart/demos_t18",
+						"repo_url": "https://github.com/Thiago-duart/demos_t18"
+							}]
+   }]
+}
+```
+
+<br/>
+
+### 📌Buscar Um Resgistro de Usuarios pelo ID
+
+**GET http://localhost:3000/user/:userId**
+
+(**Formato da resposta**)
+
+```ruby
+{
+	"data":{
+		"userId": "98232",
+			"name": "teste100",
+			"age":" 21",
+			"githubUser": "Thiago-duart",
+			"address": {
+				"cep": "01001-000",
+				"state": "SP",
+				"city": "São Paulo",
+				"neighborhood": "Sé",
+				"street": "adsfasdasdf",
+				"number": "123123",
+				"complement": "em frente",
+				"logradouro": "Praça da Sé",
+				"ibge": "3550308",
+				"gia": "1004",
+				"ddd": "11",
+				"siafi": "7107"}
+            "githubData": {
+				"login": "Thiago-duart",
+				"id": 129175937,
+				"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
+				"url": "https://api.github.com/users/Thiago-duart",
+             "repos":[{
+					    "id": 639436241,
+						"owner": "Thiago-duart",
+						"full_name": "Thiago-duart/demos_t18",
+						"repo_url": "https://github.com/Thiago-duart/demos_t18"
+							}]
+   }
+}
+```
+
+<br/>
+
+### 📌Editar um Registro de Usuario
+
+**PATH http://localhost:3000/user/:userId**
+
+(**BODY**)
+
+```ruby
+{
+	"data":{
+			"name": "Editado",
+			"address": {
+				"cep": "01001000",
+
+			}
+		}
+}
+```
+
+<br/>
+
+### 📌Deletar um Registro de Usuario
+
+**DELETE http://localhost:3000/user/:userId**
+
+(**Formato da resposta**)
+
+```ruby
+{
+	{
+	"message": "successfully deleted"
+  }
+}
+```
