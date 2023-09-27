@@ -59,7 +59,7 @@ export class UserHelpers {
     createUserDto: CreateUserDto,
     address: Anddress,
     githubData: UserDataGithub,
-  ): CreateUserDto {
+  ) {
     const newUser: CreateUserDto = {
       userId: createUserDto.userId,
       name: createUserDto.name,

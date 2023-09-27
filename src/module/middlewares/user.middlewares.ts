@@ -20,8 +20,9 @@ export class checksUserExiteByID implements NestMiddleware {
 export class CheckUserHasAlreadybeenCreated implements NestMiddleware {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
   async use(req: Request, res: Response, next: NextFunction) {
-    const userId = req.body.userId;
+    const userId = req.body.data.userId;
     const user = await this.userModel.findOne({ userId: userId });
+
     if (user) {
       return res.status(400).json({ message: 'user already created' });
     }

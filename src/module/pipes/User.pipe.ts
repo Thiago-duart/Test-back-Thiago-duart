@@ -16,6 +16,7 @@ export class ZodValidationPipe implements PipeTransform {
       throw new BadRequestException({
         message:
           'Validation failed ):  please check the data passed in the body.',
+        error: error,
       });
     }
     return value;
@@ -23,19 +24,20 @@ export class ZodValidationPipe implements PipeTransform {
 }
 
 export const CreateUserSchema = z.object({
-  address: z.object({
-    cep: z.string().min(8).max(8).nonempty(),
-    state: z.string().nonempty(),
-    city: z.string().nonempty(),
-    neighborhood: z.string().nonempty(),
-    street: z.string().nonempty(),
-    number: z.string().nonempty(),
-    complement: z.string().nonempty(),
+  data: z.object({
+    address: z.object({
+      cep: z.string().min(8).max(8).nonempty({ message: 'cep' }),
+      state: z.string().nonempty({ message: 'state' }),
+      city: z.string().nonempty({ message: 'city' }),
+      neighborhood: z.string().nonempty({ message: 'neighborhood' }),
+      street: z.string().nonempty({ message: 'street' }),
+      number: z.string().nonempty({ message: 'number' }),
+    }),
+    name: z.string().nonempty({ message: 'name' }),
+    age: z.string().nonempty({ message: ' age' }),
+    githubUser: z.string().nonempty({ message: 'githubUser' }),
+    userId: z.string().nonempty({ message: 'userId' }),
   }),
-  name: z.string().nonempty(),
-  age: z.number().nonnegative(),
-  githubUser: z.string().nonempty(),
-  userId: z.string().nonempty(),
 });
 
 export type CreateUserDto = z.infer<typeof CreateUserSchema>;

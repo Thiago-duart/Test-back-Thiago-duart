@@ -1,8 +1,8 @@
 export class CreateUserDto {
-  userId: Record<string, any>;
-  name: String;
-  age: Number;
-  githubUser: String;
+  userId: string;
+  name: string;
+  age: string;
+  githubUser: string;
   address: {
     cep: string;
     state: string;

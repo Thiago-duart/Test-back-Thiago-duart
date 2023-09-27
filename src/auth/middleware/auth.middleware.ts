@@ -8,7 +8,8 @@ import { Auth } from '../schema/auth.schema';
 export class checksUserExiteByEmail implements NestMiddleware {
   constructor(@InjectModel(Auth.name) private authModel: Model<Auth>) {}
   async use(req: Request, res: Response, next: NextFunction) {
-    const { email, password } = req.body;
+    const { email, password } = req.body.content;
+
     const user = await this.authModel.findOne({ email: email });
     if (!user) {
       return res.status(400).json({ message: 'user does not exist' });

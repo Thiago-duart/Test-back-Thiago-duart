@@ -21,7 +21,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @UsePipes(new ZodValidationPipe(singInSchema))
-  async signIn(@Body() singInDto: AuthDto) {
+  async signIn(@Body() res) {
+    const singInDto: AuthDto = res.content;
     return this.authService.signIn(singInDto);
   }
   @Post('register')

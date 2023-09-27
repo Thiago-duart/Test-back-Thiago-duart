@@ -51,8 +51,10 @@ export const RegisterSchema = z.object({
 export type RegisterDto = z.infer<typeof RegisterSchema>;
 
 export const singInSchema = z.object({
-  email: z.string().email().nonempty({ message: 'email is required' }),
-  password: z.string().nonempty({ message: 'password is required' }),
+  content: z.object({
+    email: z.string().email().nonempty({ message: 'email is required' }),
+    password: z.string().nonempty({ message: 'password is required' }),
+  }),
 });
 
 export type singInDto = z.infer<typeof singInSchema>;

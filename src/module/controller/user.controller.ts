@@ -31,10 +31,9 @@ export class UserController {
   @UseGuards(AuthGuard)
   @Post()
   @UsePipes(new ZodValidationPipe(CreateUserSchema))
-  async create(
-    @Body() createUserDto: CreateUserDto,
-    @Res() res: Record<string, any>,
-  ) {
+  async create(@Body() request, @Res() res: Record<string, any>) {
+    const createUserDto: CreateUserDto = request.data;
+
     const cep = createUserDto.address.cep;
     const userName = createUserDto.githubUser;
 
@@ -82,10 +81,12 @@ export class UserController {
   @UseGuards(AuthGuard)
   @Patch(':id')
   async editing(
-    @Body() editUserDto: EditUserDto,
+    @Body() request,
     @Param('id') id: string,
     @Res() res: Record<string, any>,
   ) {
+    const editUserDto: EditUserDto = request.data;
+
     if (editUserDto?.address?.cep) {
       const newDataAddress = await this.userHelpers.webServiceViaCep(
         editUserDto.address.cep,
