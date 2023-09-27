@@ -26,8 +26,15 @@ url do back-end:https://github.com/Thiago-duart/Test-back-Thiago-duart
 <a name="executar o projeto" id="zero"></a>
 ✔📌**executar o projeto**
 
+<sub>Para testar a aplicação, é necessário criar um usuário utilizando uma ferramenta de cliente REST, uma vez que o frontend disponibiliza apenas a página de login.<sub/>
+
+[Rota para Criar o usuario](#cad)
+
 <br/>
 Após Clonar os Projeto =>
+
+e
+
 <h4>O projeto utiliza um banco de dados MongoDB e, nesse caso, é necessário conectar o cluster do MongoDB ao projeto. Para fazer isso, siga as etapas abaixo:<h4/>
 
 - Acesse o MongoDB Atlas: Faça login na sua conta do MongoDB Atlas ou crie uma nova conta se ainda não tiver uma.
@@ -89,6 +96,8 @@ pnpm run start:dev
 ---
 
 ### 📌Nessa aplicação o usuário pode fazer o cadastro na seguinte rota
+
+<a name="cad" id="cad"></a>
 
 **POST http://localhost:3000/auth/register**
 
