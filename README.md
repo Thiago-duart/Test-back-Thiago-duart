@@ -118,22 +118,21 @@ pnpm run start:dev
 (**BODY**)
 
 ```ruby
-{
-	"data":{
-		   "userId": "98232",
-			"name": "teste100",
-			"age":" 21",
-			"githubUser": "Thiago-duart",
-			"address": {
-				"cep": "01001000",
-				"state": "SP",
-				"city": "São Paulo",
-				"neighborhood": "Sé",
-				"street": "adsfasdasdf",
-				"number": "123123",
-				"complement": "em frente"
-			}
-		}
+{"data":{
+    "userId": "98232",
+    "name": "teste100",
+    "age":" 21",
+    "githubUser": "Thiago-duart",
+  "address": {
+	    "cep": "01001000",
+	    "state": "SP",
+	    "city": "São Paulo",
+	    "neighborhood": "Sé",
+	    "street": "adsfasdasdf",
+   	    "number": "123123",
+	    "complement": "em frente"
+}
+}
 }
 ```
 
@@ -146,36 +145,34 @@ pnpm run start:dev
 (**Formato da resposta**)
 
 ```ruby
-{
-	"data":[{
-		"userId": "98232",
-			"name": "teste100",
-			"age":" 21",
-			"githubUser": "Thiago-duart",
-			"address": {
-				"cep": "01001-000",
-				"state": "SP",
-				"city": "São Paulo",
-				"neighborhood": "Sé",
-				"street": "adsfasdasdf",
-				"number": "123123",
-				"complement": "em frente",
-				"logradouro": "Praça da Sé",
-				"ibge": "3550308",
-				"gia": "1004",
-				"ddd": "11",
-				"siafi": "7107"}
-            "githubData": {
-				"login": "Thiago-duart",
-				"id": 129175937,
-				"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
-				"url": "https://api.github.com/users/Thiago-duart",
-             "repos":[{
-					    "id": 639436241,
-						"owner": "Thiago-duart",
-						"full_name": "Thiago-duart/demos_t18",
-						"repo_url": "https://github.com/Thiago-duart/demos_t18"
-							}]
+{"data":[{
+	  "userId": "98232",
+          "name": "teste100",
+    	  "age":" 21",
+	  "githubUser": "Thiago-duart",
+    "address": {
+	   "cep": "01001-000",
+    	   "state": "SP",
+	   "city": "São Paulo",
+	   "neighborhood": "Sé",
+	   "street": "adsfasdasdf",
+	   "number": "123123",
+   	   "complement": "em frente",
+	   "logradouro": "Praça da Sé",
+	   "ibge": "3550308",
+	   "gia": "1004",
+	   "ddd": "11",
+	   "siafi": "7107"}
+   "githubData": {
+		"login": "Thiago-duart",
+		"id": 129175937,
+		"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
+		"url": "https://api.github.com/users/Thiago-duart",
+                "repos":[{
+			  "id": 639436241,
+                           "owner": "Thiago-duart",
+                          "full_name": "Thiago-duart/demos_t18",
+			   "repo_url": "https://github.com/Thiago-duart/demos_t18"}]
    }]
 }
 ```
@@ -189,36 +186,34 @@ pnpm run start:dev
 (**Formato da resposta**)
 
 ```ruby
-{
-	"data":{
-		"userId": "98232",
-			"name": "teste100",
-			"age":" 21",
-			"githubUser": "Thiago-duart",
-			"address": {
-				"cep": "01001-000",
-				"state": "SP",
-				"city": "São Paulo",
-				"neighborhood": "Sé",
-				"street": "adsfasdasdf",
-				"number": "123123",
-				"complement": "em frente",
-				"logradouro": "Praça da Sé",
-				"ibge": "3550308",
-				"gia": "1004",
-				"ddd": "11",
-				"siafi": "7107"}
-            "githubData": {
-				"login": "Thiago-duart",
-				"id": 129175937,
-				"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
-				"url": "https://api.github.com/users/Thiago-duart",
-             "repos":[{
-					    "id": 639436241,
-						"owner": "Thiago-duart",
-						"full_name": "Thiago-duart/demos_t18",
-						"repo_url": "https://github.com/Thiago-duart/demos_t18"
-							}]
+{"data":{
+	"userId": "98232",
+	"name": "teste100",
+	"age":" 21",
+	"githubUser": "Thiago-duart",
+  "address": {
+	  "cep": "01001-000",
+	  "state": "SP",
+	  "city": "São Paulo",
+	  "neighborhood": "Sé",
+	  "street": "adsfasdasdf",
+	  "number": "123123",
+	  "complement": "em frente",
+	  "logradouro": "Praça da Sé",
+	  "ibge": "3550308",
+	  "gia": "1004",
+	  "ddd": "11",
+	  "siafi": "7107"}
+  "githubData": {
+	"login": "Thiago-duart",
+	"id": 129175937,
+	"avatar": "https://avatars.githubusercontent.com/u/129175937?v=4",
+	"url": "https://api.github.com/users/Thiago-duart",
+      "repos":[{
+	 "id": 639436241,
+	  "owner": "Thiago-duart",
+	  "full_name": "Thiago-duart/demos_t18",
+	  "repo_url": "https://github.com/Thiago-duart/demos_t18"}]
    }
 }
 ```
@@ -232,14 +227,11 @@ pnpm run start:dev
 (**BODY**)
 
 ```ruby
-{
-	"data":{
-			"name": "Editado",
-			"address": {
-				"cep": "01001000",
-
-			}
-		}
+{"data":{
+	"name": "Editado",
+  "address": {
+	 "cep": "01001000",}
+	}
 }
 ```
 
@@ -253,8 +245,8 @@ pnpm run start:dev
 
 ```ruby
 {
-	{
-	"message": "successfully deleted"
+  {
+    "message": "successfully deleted"
   }
 }
 ```
