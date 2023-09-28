@@ -6,29 +6,25 @@ import {
   HttpStatus,
   Post,
   Res,
-  UsePipes,
 } from '@nestjs/common';
-import { AuthDto } from './dto/auth.dto';
-import {
-  RegisterSchema,
-  ZodValidationPipe,
-  singInSchema,
-} from './pipes/auth.pipe';
+import { CreateAuthDto, loginAuthDto } from './dto/auth.dto';
+import { AuthValidation } from './pipes/auth.pipe';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  @UsePipes(new ZodValidationPipe(singInSchema))
-  async signIn(@Body() res) {
-    const singInDto: AuthDto = res.content;
-    return this.authService.signIn(singInDto);
+  async signIn(@Body(new AuthValidation()) res: loginAuthDto) {
+    const { content }: Record<string, any> = res;
+    return this.authService.signIn(content);
   }
   @Post('register')
-  @UsePipes(new ZodValidationPipe(RegisterSchema))
-  async createRegister(@Body() dataUserDto: AuthDto, @Res() res: any) {
-    this.authService.createRegister(dataUserDto);
+  async createRegister(
+    @Body(new AuthValidation()) createAuthDto: CreateAuthDto,
+    @Res() res: any,
+  ) {
+    this.authService.createRegister(createAuthDto);
     return res.status(200).json({ message: 'successfully registered' });
   }
 }

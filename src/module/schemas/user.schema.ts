@@ -1,43 +1,24 @@
-import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { AddressDto } from '../dto/Address.dto';
+import { GithubDto } from '../dto/Github.dto';
+import { UserDto } from '../dto/User.dto';
+import { ValidateNested } from 'class-validator';
 
 export type UserDocument = HydratedDocument<User>;
 @Schema()
 export class User {
   @Prop()
   userId: string;
-  @Prop({ require: true })
+  @Prop()
   name: string;
   @Prop()
-  age: number;
+  age: string;
   @Prop()
   githubUser: string;
-  @Prop(
-    raw({
-      cep: String,
-      state: String,
-      city: String,
-      neighborhood: String,
-      street: String,
-      number: String,
-      complement: String,
-      logradouro: String,
-      ibge: String,
-      gia: String,
-      ddd: String,
-      siafi: String,
-    }),
-  )
-  address: Record<string, any>;
-  @Prop(
-    raw({
-      login: String,
-      id: Number,
-      avatar: String,
-      url: String,
-      repos: Array<Object>,
-    }),
-  )
-  githubData: Record<string, any>;
+  @Prop()
+  address: AddressDto;
+  @Prop()
+  gitHubData: GithubDto;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

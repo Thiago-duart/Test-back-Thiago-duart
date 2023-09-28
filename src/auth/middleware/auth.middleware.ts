@@ -11,6 +11,7 @@ export class checksUserExiteByEmail implements NestMiddleware {
     const { email, password } = req.body.content;
 
     const user = await this.authModel.findOne({ email: email });
+
     if (!user) {
       return res.status(400).json({ message: 'user does not exist' });
     }

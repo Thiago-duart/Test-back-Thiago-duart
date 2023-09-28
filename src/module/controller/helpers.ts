@@ -3,7 +3,6 @@ import { catchError, firstValueFrom } from 'rxjs';
 import { Anddress } from '../@types/UserdataAnddress.type';
 import { UserDataGithub } from '../@types/UserdataGithub.types';
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from '../dto/user.dto';
 
 @Injectable()
 export class UserHelpers {
@@ -55,25 +54,21 @@ export class UserHelpers {
 
     return userDataGithub;
   }
-  modelsNewUserData(
-    createUserDto: CreateUserDto,
-    address: Anddress,
-    githubData: UserDataGithub,
-  ) {
-    const newUser: CreateUserDto = {
-      userId: createUserDto.userId,
-      name: createUserDto.name,
-      age: createUserDto.age,
-      githubUser: createUserDto.githubUser,
+  modelsNewUserData(user, address: Anddress, githubData: UserDataGithub) {
+    const newUser = {
+      userId: user.userId,
+      name: user.name,
+      age: user.age,
+      githubUser: user.githubUser,
 
       address: {
         cep: address.cep,
         state: address.uf,
         city: address.localidade,
-        neighborhood: createUserDto.address.neighborhood,
-        street: createUserDto.address.street,
-        number: createUserDto.address.number,
-        complement: createUserDto.address.complement,
+        neighborhood: user.address.neighborhood,
+        street: user.address.street,
+        number: user.address.number,
+        complement: user.address.complement,
         logradouro: address.logradouro,
         ibge: address.ibge,
         gia: address.gia,

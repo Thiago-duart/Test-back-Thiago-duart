@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthDto } from './dto/auth.dto';
 import { Auth } from './schema/auth.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { loginAuthDto } from './dto/auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -12,8 +12,9 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(authDto: AuthDto) {
+  async signIn(authDto: loginAuthDto) {
     const { email, password } = authDto;
+
     const user = await this.authModel.findOne({ email });
     if (user?.password !== password) {
       throw new UnauthorizedException();
@@ -25,7 +26,7 @@ export class AuthService {
       }),
     };
   }
-  async createRegister(dataUserDto: AuthDto) {
+  async createRegister(dataUserDto) {
     const newUserRegister = new this.authModel(dataUserDto);
     newUserRegister.save();
     return newUserRegister;

@@ -1,3 +1,4 @@
+import { GithubDto } from './../dto/Github.dto';
 import {
   Body,
   Controller,
@@ -8,41 +9,41 @@ import {
   Post,
   Res,
   UseGuards,
-  UsePipes,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { CreateUserDto } from '../dto/user.dto';
 import { User } from '../schemas/user.schema';
-import { EditUserDto } from '../dto/editUser.dto';
-import { HttpService } from '@nestjs/axios';
 import { Anddress } from '../@types/UserdataAnddress.type';
 import { UserDataGithub } from '../@types/UserdataGithub.types';
-import { CreateUserSchema, ZodValidationPipe } from '../pipes/User.pipe';
 import { UserHelpers } from './helpers';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { UserValidation } from '../pipes/UserValidation.pipe';
+import { UserDto } from '../dto/User.dto';
+import { UserCompletedDTO } from '../dto/AllUserDatas.dto';
 
 @Controller('user')
 export class UserController {
   constructor(
     private userService: UserService,
-    private readonly httpService: HttpService,
     private userHelpers: UserHelpers,
   ) {}
   @UseGuards(AuthGuard)
   @Post()
-  @UsePipes(new ZodValidationPipe(CreateUserSchema))
-  async create(@Body() request, @Res() res: Record<string, any>) {
-    const createUserDto: CreateUserDto = request.data;
+  async create(
+    @Body(new UserValidation()) user: UserCompletedDTO,
+    @Res() res: Record<string, any>,
+  ) {
+    const { data }: Record<string, any> = user;
 
-    const cep = createUserDto.address.cep;
-    const userName = createUserDto.githubUser;
+    const cep: string = data.address.cep;
+    const githubUser: string = data.githubUser;
 
     const address: Anddress = await this.userHelpers.webServiceViaCep(cep);
     const githubData: UserDataGithub = await this.userHelpers.webServiceGithub(
-      userName,
+      githubUser,
     );
-    const newUser: CreateUserDto = this.userHelpers.modelsNewUserData(
-      createUserDto,
+
+    const newUser: UserDto = this.userHelpers.modelsNewUserData(
+      data,
       address,
       githubData,
     );
@@ -85,7 +86,7 @@ export class UserController {
     @Param('id') id: string,
     @Res() res: Record<string, any>,
   ) {
-    const editUserDto: EditUserDto = request.data;
+    const editUserDto = request.data;
 
     if (editUserDto?.address?.cep) {
       const newDataAddress = await this.userHelpers.webServiceViaCep(

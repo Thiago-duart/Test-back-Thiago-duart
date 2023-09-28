@@ -3,18 +3,18 @@ import {
   Module,
   NestModule,
   RequestMethod,
-  ValidationPipe,
 } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Auth, AuthSchema } from './schema/auth.schema';
-import { ZodValidationPipe } from './pipes/auth.pipe';
+import { AuthValidation } from './pipes/auth.pipe';
 import {
   checksUserCreated,
   checksUserExiteByEmail,
 } from './middleware/auth.middleware';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -28,7 +28,11 @@ import {
   providers: [
     AuthService,
     JwtService,
-    { provide: ValidationPipe, useClass: ZodValidationPipe },
+
+    {
+      provide: APP_PIPE,
+      useClass: AuthValidation,
+    },
   ],
   exports: [AuthService],
 })

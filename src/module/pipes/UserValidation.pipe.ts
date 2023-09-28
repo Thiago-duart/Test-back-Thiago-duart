@@ -8,15 +8,14 @@ import { validate } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 
 @Injectable()
-export class AuthValidation implements PipeTransform<any> {
+export class UserValidation implements PipeTransform<any> {
   async transform(value: any, { metatype }: ArgumentMetadata) {
     if (!metatype || !this.toValidate(metatype)) {
       return value;
     }
     const object = plainToInstance(metatype, value);
     const errors = await validate(object);
-
-    if (errors.length > 1) {
+    if (errors.length > 0) {
       throw new BadRequestException('Validation failed');
     }
     return value;

@@ -11,13 +11,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { HttpModule } from '@nestjs/axios';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { UserHelpers } from './controller/helpers';
 import {
   CheckUserHasAlreadybeenCreated,
   checksUserExiteByID,
 } from './middlewares/user.middlewares';
+import { UserValidation } from './pipes/UserValidation.pipe';
 
 @Module({
   imports: [
@@ -36,8 +37,11 @@ import {
   controllers: [UserController],
   providers: [
     UserService,
-    { provide: ValidationPipe, useClass: ZodValidationPipe },
     UserHelpers,
+    {
+      provide: APP_PIPE,
+      useClass: UserValidation,
+    },
   ],
 })
 export class UserModule implements NestModule {
