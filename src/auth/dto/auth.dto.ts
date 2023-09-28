@@ -2,14 +2,14 @@ import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class CreateAuthDto {
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'must contain name' })
   name: string;
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'must contain email' })
   @IsEmail()
   email: string;
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'must contain password' })
   @Matches(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
     'g',

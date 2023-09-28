@@ -13,22 +13,29 @@ export class AuthService {
   ) {}
 
   async signIn(authDto: loginAuthDto) {
-    const { email, password } = authDto;
-
-    const user = await this.authModel.findOne({ email });
-    if (user?.password !== password) {
-      throw new UnauthorizedException();
+    try {
+      const { email, password } = authDto;
+      const user = await this.authModel.findOne({ email });
+      if (user?.password !== password) {
+        throw new UnauthorizedException();
+      }
+      const payload = { sub: user.id, username: user.name };
+      return {
+        access_token: await this.jwtService.signAsync(payload, {
+          secret: 'bOgSJw9KjywTSA7wQGEQlYlVMbOp+xdz78biWLEqQOQ=',
+        }),
+      };
+    } catch (error) {
+      console.error(error);
     }
-    const payload = { sub: user.id, username: user.name };
-    return {
-      access_token: await this.jwtService.signAsync(payload, {
-        secret: 'bOgSJw9KjywTSA7wQGEQlYlVMbOp+xdz78biWLEqQOQ=',
-      }),
-    };
   }
   async createRegister(dataUserDto) {
-    const newUserRegister = new this.authModel(dataUserDto);
-    newUserRegister.save();
-    return newUserRegister;
+    try {
+      const newUserRegister = new this.authModel(dataUserDto);
+      newUserRegister.save();
+      return newUserRegister;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
